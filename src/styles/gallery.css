@@ -1,0 +1,297 @@
+/* --------------------------------------------------------------------------
+   Gallery
+   -------------------------------------------------------------------------- */
+
+.gallery-shell {
+  position: relative;
+  padding: clamp(28px, 4vw, 46px);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: clamp(32px, 4vw, 52px);
+  background: linear-gradient(
+    150deg,
+    rgba(238, 240, 232, 0.95),
+    rgba(249, 248, 246, 0.65) 45%,
+    rgba(242, 233, 218, 0.55)
+  );
+  box-shadow: var(--shadow-soft);
+  overflow: hidden;
+}
+
+.gallery-status {
+  position: relative;
+  margin: 24px 0;
+  text-align: center;
+  color: var(--muted, var(--ink-soft));
+}
+
+.gallery-shell::before {
+  content: '';
+  position: absolute;
+  right: -6%;
+  top: -30%;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  border: 1px solid rgba(160, 170, 142, 0.25);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 30px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 17px;
+  border: 1px solid rgba(74, 74, 72, 0.1);
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.62);
+  color: #6f6f69;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.chip:hover:not(.chip--active) {
+  border-color: rgba(160, 170, 142, 0.5);
+  color: var(--ink);
+}
+
+.chip svg {
+  width: 14px;
+  height: 14px;
+}
+
+.chip--active {
+  border-color: transparent;
+  background: var(--sage);
+  color: #fff;
+  box-shadow: 0 10px 24px -14px rgba(135, 146, 116, 0.9);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: clamp(12px, 1.6vw, 20px);
+}
+
+.art-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 9px 9px 0;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 28px;
+  background: #fff;
+  box-shadow: 0 20px 44px -34px rgba(74, 74, 72, 0.45);
+  transition:
+    transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1),
+    box-shadow 0.4s ease;
+}
+
+.art-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 32px 54px -30px rgba(74, 74, 72, 0.4);
+}
+
+.art-card__media {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+  border: none;
+  border-radius: 20px;
+  background: #fbfaf7;
+  aspect-ratio: 1 / 1;
+}
+
+.art-card__media--clickable {
+  cursor: zoom-in;
+}
+
+/* ==========================================================================
+   Gallery lightbox
+   ========================================================================== */
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(16px, 4vw, 48px);
+  background: rgba(34, 34, 34, 0.82);
+  backdrop-filter: blur(6px);
+  cursor: zoom-out;
+  animation: lightbox-fade 0.2s ease-out;
+}
+
+@keyframes lightbox-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.lightbox__canvas {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 200px;
+  min-height: 200px;
+  max-width: min(90vw, 90vh);
+  max-height: 90vh;
+  padding: clamp(16px, 3vw, 36px);
+  border-radius: 24px;
+  background: #ffffff;
+  box-shadow: 0 40px 80px -32px rgba(0, 0, 0, 0.55);
+  cursor: default;
+  overflow: hidden;
+}
+
+.lightbox__loader {
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 3px solid rgba(160, 170, 142, 0.3);
+  border-top-color: var(--sage);
+  animation: lightbox-spin 0.8s linear infinite;
+}
+
+@keyframes lightbox-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.lightbox__image {
+  max-width: 100%;
+  max-height: calc(90vh - 72px);
+  object-fit: contain;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.lightbox__image--ready {
+  opacity: 1;
+}
+
+.lightbox__watermark {
+  position: absolute;
+  right: calc(clamp(10px, 2vw, 20px) + 24px);
+  bottom: calc(clamp(10px, 2vw, 20px) + 24px);
+  width: clamp(96px, 16%, 160px);
+  height: auto;
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+.lightbox__close {
+  position: absolute;
+  top: clamp(14px, 3vw, 28px);
+  right: clamp(14px, 3vw, 28px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  color: #2a2a28;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+}
+
+.lightbox__close:hover {
+  transform: scale(1.08);
+  background: #ffffff;
+}
+
+.lightbox__close svg {
+  width: 20px;
+  height: 20px;
+}
+
+.art-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  mix-blend-mode: multiply;
+  transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.art-card:hover .art-card__media img {
+  transform: scale(1.05);
+}
+
+.art-card__star {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.86);
+  color: #b9b9b3;
+  box-shadow: 0 4px 10px -4px rgba(74, 74, 72, 0.25);
+  backdrop-filter: blur(4px);
+}
+
+.art-card__star svg {
+  width: 13px;
+  height: 13px;
+}
+
+.art-card__star--active {
+  color: #e6c46a;
+}
+
+.art-card__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 11px 8px 13px;
+}
+
+.art-card__meta span:first-child {
+  overflow: hidden;
+  color: var(--ink);
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.art-card__meta span:last-child {
+  flex: none;
+  color: var(--muted);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}

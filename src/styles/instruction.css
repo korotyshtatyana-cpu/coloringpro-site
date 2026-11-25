@@ -1,0 +1,201 @@
+/* --------------------------------------------------------------------------
+   Instruction gallery (onboarding-style slides)
+   -------------------------------------------------------------------------- */
+
+.instruction {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: clamp(14px, 3vw, 32px);
+}
+
+.instruction__card {
+  max-width: 960px;
+  margin: 0 auto;
+  width: 100%;
+  padding: clamp(28px, 4vw, 52px);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: clamp(28px, 4vw, 44px);
+  background: linear-gradient(
+    150deg,
+    rgba(238, 240, 232, 0.95),
+    rgba(249, 248, 246, 0.65) 45%,
+    rgba(242, 233, 218, 0.55)
+  );
+  box-shadow: var(--shadow-soft);
+}
+
+.instruction__viewport {
+  position: relative;
+  overflow: hidden;
+}
+
+.instruction-slide {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  align-items: center;
+  gap: clamp(24px, 4vw, 48px);
+}
+
+.instruction-slide--enter-next {
+  animation: instruction-enter-next 0.4s cubic-bezier(0.25, 0.7, 0.25, 1);
+}
+
+.instruction-slide--enter-prev {
+  animation: instruction-enter-prev 0.4s cubic-bezier(0.25, 0.7, 0.25, 1);
+}
+
+.instruction-slide--exit {
+  position: absolute;
+  inset: 0;
+}
+
+.instruction-slide--exit-next {
+  animation: instruction-exit-next 0.4s cubic-bezier(0.25, 0.7, 0.25, 1) forwards;
+}
+
+.instruction-slide--exit-prev {
+  animation: instruction-exit-prev 0.4s cubic-bezier(0.25, 0.7, 0.25, 1) forwards;
+}
+
+@keyframes instruction-enter-next {
+  from {
+    opacity: 0;
+    transform: translateX(64px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes instruction-enter-prev {
+  from {
+    opacity: 0;
+    transform: translateX(-64px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes instruction-exit-next {
+  from {
+    opacity: 1;
+    transform: none;
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-64px);
+  }
+}
+
+@keyframes instruction-exit-prev {
+  from {
+    opacity: 1;
+    transform: none;
+  }
+  to {
+    opacity: 0;
+    transform: translateX(64px);
+  }
+}
+
+.instruction-slide__media {
+  position: relative;
+}
+
+.instruction-slide__media img {
+  width: 100%;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 24px 44px -30px rgba(74, 74, 72, 0.4);
+}
+
+.instruction-slide__counter {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--ink);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+}
+
+.instruction-slide__body h3 {
+  font-family: var(--font-display, 'Playfair Display', serif);
+  font-size: clamp(24px, 3vw, 34px);
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.instruction-slide__body p {
+  margin-top: 14px;
+  color: var(--ink-soft);
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+.instruction-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgba(74, 74, 72, 0.12);
+  border-radius: 50%;
+  background: #fff;
+  color: var(--ink);
+  cursor: pointer;
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    color 0.25s ease,
+    opacity 0.25s ease;
+}
+
+.instruction-nav svg {
+  width: 20px;
+  height: 20px;
+}
+
+.instruction-nav:hover:not(:disabled) {
+  transform: scale(1.08);
+  background: var(--sage, var(--sage));
+  color: #fff;
+  border-color: transparent;
+}
+
+.instruction-nav:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.instruction-indicator {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: clamp(20px, 3vw, 30px);
+}
+
+.instruction-indicator__dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: none;
+  border-radius: 999px;
+  background: rgba(74, 74, 72, 0.18);
+  cursor: pointer;
+  transition:
+    width 0.25s ease,
+    background 0.25s ease;
+}
+
+.instruction-indicator__dot--active {
+  width: 24px;
+  background: var(--sage, var(--sage));
+}

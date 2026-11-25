@@ -1,0 +1,82 @@
+/* --------------------------------------------------------------------------
+   Quote / philosophy
+   -------------------------------------------------------------------------- */
+
+.quote-card {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(46px, 7vw, 88px) clamp(24px, 6vw, 80px);
+  border-radius: clamp(32px, 4vw, 48px);
+  background: linear-gradient(135deg, #f3f0e8, var(--bg) 55%, var(--sage-mist));
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  text-align: center;
+}
+
+.quote-card__mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  margin-bottom: 24px;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--sage);
+  box-shadow: 0 14px 30px -20px rgba(74, 74, 72, 0.35);
+}
+
+.quote-card__mark svg {
+  width: 20px;
+  height: 20px;
+}
+
+.quote-card blockquote {
+  max-width: 22ch;
+  margin: 0 auto;
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4.2vw, 48px);
+  font-weight: 500;
+  line-height: 1.16;
+  letter-spacing: -0.02em;
+}
+
+.quote-card p {
+  margin-top: 22px;
+  color: #7f7f78;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+}
+
+.quote-card__logo {
+  position: absolute;
+  right: 5%;
+  bottom: -42px;
+  width: clamp(120px, 16vw, 196px);
+  height: auto;
+  opacity: 0.13;
+  transform: rotate(-8deg);
+  pointer-events: none;
+}
+
+.quote-card::before,
+.quote-card::after {
+  content: '';
+  position: absolute;
+  border: 1px solid rgba(160, 170, 142, 0.28);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.quote-card::before {
+  width: 300px;
+  height: 300px;
+  left: -130px;
+  top: -130px;
+}
+
+.quote-card::after {
+  width: 420px;
+  height: 420px;
+  right: -190px;
+  bottom: -230px;
+}

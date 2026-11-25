@@ -1,0 +1,72 @@
+/* --------------------------------------------------------------------------
+   Section headings
+   -------------------------------------------------------------------------- */
+
+.section-head {
+  max-width: 660px;
+  margin-bottom: clamp(28px, 4vw, 44px);
+}
+
+.section-head h2 {
+  margin-top: 18px;
+  font-size: clamp(32px, 4.6vw, 52px);
+  font-weight: 500;
+}
+
+.section-head p {
+  margin-top: 18px;
+  color: var(--ink-muted);
+  font-size: 15.5px;
+  line-height: 1.8;
+}
+
+.section-head--center {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.section-head--center .eyebrow {
+  justify-content: center;
+}
+
+.section-head--center .eyebrow::after {
+  content: '';
+  width: 32px;
+  height: 1px;
+  background: var(--sage);
+}
+
+.section-head__row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  max-width: none;
+}
+
+.link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid transparent;
+  color: var(--sage-deep);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  transition:
+    gap 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.link-arrow svg {
+  width: 15px;
+  height: 15px;
+}
+
+.link-arrow:hover {
+  gap: 12px;
+  border-color: var(--sage-soft);
+}

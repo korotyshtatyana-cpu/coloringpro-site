@@ -1,0 +1,101 @@
+/* --------------------------------------------------------------------------
+   Footer
+   -------------------------------------------------------------------------- */
+
+.site-footer {
+  padding: 0 24px 40px;
+}
+
+.footer-shell {
+  padding: clamp(32px, 4vw, 52px) clamp(24px, 4vw, 56px) 26px;
+  border: 1px solid var(--line);
+  border-radius: clamp(30px, 3.6vw, 44px);
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) repeat(3, minmax(0, 0.75fr));
+  gap: 36px;
+}
+
+.footer-brand img {
+  width: 132px;
+  height: auto;
+  margin-bottom: 18px;
+  opacity: 0.9;
+}
+
+.footer-brand p {
+  max-width: 32ch;
+  color: #7d7d76;
+  font-size: 12.5px;
+  line-height: 1.8;
+}
+
+.footer-mail {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px;
+  color: var(--sage-deep);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.footer-mail svg {
+  width: 14px;
+  height: 14px;
+}
+
+.footer-col h4 {
+  margin-bottom: 16px;
+  color: var(--muted);
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.footer-col ul {
+  display: grid;
+  gap: 9px;
+}
+
+.footer-col a {
+  color: #77776f;
+  font-size: 12.5px;
+  line-height: 1.6;
+  transition: color 0.2s ease;
+}
+
+.footer-col a:hover {
+  color: var(--sage-deep);
+}
+
+.footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 38px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+  color: #9a9a93;
+  font-size: 10.5px;
+  letter-spacing: 0.04em;
+}
+
+.footer-bottom span:last-child {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.footer-bottom svg {
+  width: 13px;
+  height: 13px;
+  color: var(--sage);
+}
